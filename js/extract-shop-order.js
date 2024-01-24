@@ -1,9 +1,11 @@
 function extractOrderData(jsonData) {
+    const {id, name, email, line_items} = jsonData.order;
+
     return {
-      id: jsonData.order.id,
-      name: jsonData.order.name,
-      email: jsonData.order.email,
-      lineItems: jsonData.order.line_items.map((lineItem) => ({
+      id: id,
+      name: name,
+      email: email,
+      lineItems: line_items.map((lineItem) => ({
         sku: lineItem.sku,
         price: lineItem.price,
         product_id: lineItem.product_id,
@@ -12,7 +14,7 @@ function extractOrderData(jsonData) {
     };
   }
   
-const jsonOrderData = 
+const shopOrderJson = 
 {
   "order": {
     "id": 5617487642814,
@@ -429,7 +431,7 @@ const jsonOrderData =
     ]
   }
 }
-const extractedData = extractOrderData(jsonOrderData);
+const extractedData = extractOrderData(shopOrderJson);
 
 console.log(extractedData);
   
